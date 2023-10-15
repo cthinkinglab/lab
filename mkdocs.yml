@@ -1,0 +1,29 @@
+site_name: Computational Thinking and Programming - Laboratory
+site_url: ""
+edit_uri: ""
+use_directory_urls: false
+extra_css: [extra.css]
+extra_javascript: 
+  - extra.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+theme:
+    name: mkdocs
+    nav_style: light
+
+markdown_extensions:
+  - toc:
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Chapters:
+    - 1. Introduction to Computational Thinking: chapter/01.md
+    - 2. Introduction to Algorithms: chapter/02.md
+    - 3. Introduction to Python: chapter/03.md
+    - 4. Functions: chapter/04.md
+    - 5. Searching and Sorting: chapter/05.md
