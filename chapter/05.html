@@ -8,17 +8,14 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>5. Searching and Sorting - Computational Thinking and Programming - Laboratory</title>
+        <title>5. Functions - Computational Thinking and Programming - Laboratory</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../extra.css" rel="stylesheet">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -57,11 +54,15 @@
 </li>
                                     
 <li>
-    <a href="04.html" class="dropdown-item">4. Functions</a>
+    <a href="04.html" class="dropdown-item">4. Algorithm efficiency - measuring complexity</a>
 </li>
                                     
 <li>
-    <a href="05.html" class="dropdown-item active">5. Searching and Sorting</a>
+    <a href="05.html" class="dropdown-item active">5. Functions</a>
+</li>
+                                    
+<li>
+    <a href="06.html" class="dropdown-item">6. Searching and Sorting</a>
 </li>
                                 </ul>
                             </li>
@@ -79,7 +80,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="06.html" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -101,25 +102,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#data-structure" class="nav-link">Data Structure</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#lists" class="nav-link">Lists</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#tuples" class="nav-link">Tuples</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#random-numbers" class="nav-link">Random Numbers</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#exercises" class="nav-link">Exercises</a>
+            <li class="nav-item" data-level="1"><a href="#functions" class="nav-link">Functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -128,414 +111,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="data-structure">Data Structure</h1>
-<h2 id="lists">Lists</h2>
-<p>A list is an ordered set of elements, where each element is identified by an index. Lists are similar to strings, which are ordered sets of characters. The elements of a list can have any type.</p>
-<h3 id="list-values">List values</h3>
-<p>There are multiples way to create a list. The simplest one is to enclose the elements in square brackets ([ and ])</p>
-<pre><code class="language-python">names = [&quot;Alice&quot;, &quot;Sophie&quot;, &quot;Mary&quot;, &quot;Eve&quot;]
-ages = [20, 22, 54, 34]
-</code></pre>
-<p>The first example is a list of four string values, where the second one is a list of four integers. </p>
-<p>Python provide a simple way to creare a list of consecutive integers. </p>
-<pre><code class="language-python">numbers = list(range(0, 10))
-print(numbers)
-</code></pre>
-<p>The <strong>range</strong> function takes two arguments and returns an object that produces a sequence of integers from the start to the stop, including the start but not the stop. </p>
-<p>If there is a third argument called <strong>step size</strong>. It specifies the increment or decrement between successives values</p>
-<pre><code class="language-python">numbers = list(range(0, 100, 2))
-print(numbers)
-</code></pre>
-<p>With a single argument, it creates a list that start at 0</p>
-<pre><code class="language-python">numbers = list(range(0, 8))
-print(numbers)
-</code></pre>
-<p>One can also create an empty list</p>
-<pre><code class="language-python">empty = []
-</code></pre>
-<h3 id="acessing-individual-elements">Acessing individual elements</h3>
-<p>One can access an element of a list through the bracket operator ([]). The expression inside the brackets specifies the index. <strong>Remember that the indices start at 0</strong>. </p>
-<pre><code class="language-python">cheeses = [&quot;Cheddar&quot;, &quot;Edam&quot;, &quot;Gouda&quot;]
-print(cheeses[1])
-cheeses[2] = &quot;Feta&quot;
-print(cheeses)
-</code></pre>
-<p>Any integer expression can be used as an index. Example</p>
-<pre><code class="language-python">print(cheeses[2-1])
-</code></pre>
-<p>If you try to use a non-integer expression, you will get a TypeError</p>
-<pre><code class="language-python">numbers[1.0]
-</code></pre>
-<p>TypeError: list indices must be integers or slices, not float</p>
-<p>We get an <strong>IndexError</strong>, when trying to read or write an element that does not exist</p>
-<pre><code class="language-python">print(numbers[10])
-numbers[10] = 42
-</code></pre>
-<p>IndexError: list index out of range</p>
-<p>If an index has a negative value, it counts backward from the end of the list</p>
-<pre><code class="language-python">print(numbers[-1])
-</code></pre>
-<p>numbers[-1] is the last element of the list, numbers[-2] is the second to last, <span class="arithmatex">\(\ldots\)</span></p>
-<h3 id="list-membership">List membership</h3>
-<p>The Boolean operator <strong>in</strong> tests the membership in a <strong>sequence</strong>. </p>
-<pre><code class="language-python">cheeses = [&quot;Cheddar&quot;, &quot;Edam&quot;, &quot;Gouda&quot;, &quot;Feta&quot;]
-print(&quot;Edam&quot; in cheeses)
-print(&quot;Manouri&quot; in cheeses)
-</code></pre>
-<p>Since <em>Edam</em> is a member of the list <em>cheeses</em>, the <strong>in</strong> operator returns <strong>True</strong>. It returns <strong>False</strong> for <em>Manouri</em>, since it is not a member of the list <em>cheeses</em>.</p>
-<p>We can combine <strong>not</strong> with <strong>in</strong> to test whether an element is not a member of the list</p>
-<pre><code class="language-python">print(&quot;Manouri&quot; not in cheeses)
-</code></pre>
-<p>In this case, the output is <strong>True</strong>. </p>
-<h3 id="traversing-a-list">Traversing a list</h3>
-<pre><code class="language-python">for cheese in cheeses:
-    print(cheese)
-</code></pre>
-<p>It almost reads like English: "for every cheese in (the list of) <em>cheeses</em>, print (the name of the) cheese.</p>
-<p>One can also use the <strong>enumerate</strong> function to have the index and the value when traversing a list</p>
-<pre><code class="language-python">for i, cheese in enumerate(cheeses):
-    print(i, cheese)
-</code></pre>
-<h3 id="list-operations">List operations</h3>
-<p>The <strong>+</strong> operator concatenates two lists</p>
-<pre><code class="language-python">a = list(range(1, 9, 2))
-b = list(range(9, 15, 2))
-c = a + b
-print(c)
-</code></pre>
-<p>Similarly, the <strong>*</strong> operator repeats a list a given number of times</p>
-<pre><code class="language-python">a = [42] * 3
-print(a)
-b = [42, 5] * 2
-print(b)
-</code></pre>
-<p>The first example repeats the list <strong>[42]</strong> three times. The second one repeats the list [42, 5] two times</p>
-<p>We can also use the method <strong>extend</strong></p>
-<pre><code class="language-python">b.extend([100, 300])
-cheeses.extend([&quot;Feta&quot;, &quot;Mozzarella&quot;, &quot;Burrata&quot;])
-</code></pre>
-<p>We can also use the method <strong>append</strong> to add a new element to a list</p>
-<pre><code class="language-python">cheeses.append(&quot;Orda&quot;)
-print(cheeses)
-</code></pre>
-<p>The method <strong>sort</strong> arranges the elements of the list in ascending order</p>
-<pre><code class="language-python">cheeses.sort()
-</code></pre>
-<p>It changes the list. Use the built-in function <strong>sorted</strong> to create a sorted version of a given list</p>
-<pre><code class="language-python">b_sorted = sorted(b)
-</code></pre>
-<h3 id="objects-and-values">Objects and values</h3>
-<p>When one assigns a variable to another, both variables will refer to the same object</p>
-<pre><code class="language-python">a = [1, 8, 10]
-b = a
-</code></pre>
-<p>In this case, we case a list has two different names <strong>a</strong> and <strong>b</strong>. Changes made with one will affect the other. This behavior is called <strong>aliasing</strong>. </p>
-<pre><code class="language-python">b[0] = 7
-print(a)
-# [7, 8, 10]
-</code></pre>
-<p>Although this behavior can be useful, it is sometimes unexpected or undesirable. In general, it is safer to avoid aliasing when you are working with <em>mutable objects</em>.</p>
-<h3 id="cloning-lists">Cloning lists</h3>
-<p>If you want to modify a list and also keep a copy of the original one, you need to work on a copy the list. This process is sometimes called <strong>cloning</strong>.</p>
-<p>The easiest way to clone a list is to use the <strong>slice operator</strong>. </p>
-<pre><code class="language-python">a = [1, 8, 10]
-b = a[:]
-print(b)
-</code></pre>
-<p>Taking any slice of the list <strong>a</strong> creates a new list. In this case, the slice happens to consist the whole list. Now, you can change the list <strong>b</strong> without affecting the list <strong>a</strong>. </p>
-<pre><code class="language-python">b[0] = 7
-print(a)
-# [1, 8, 10]
-</code></pre>
-<h3 id="list-as-parameters">List as parameters</h3>
-<p>Passing a list as an argument of a function actually passes a <strong>reference</strong> to the list and not a copy of it. For example, the function head takes a list as a parameter and returns the first element:</p>
-<pre><code class="language-python">def head(list):
-    return list[0]
-</code></pre>
-<pre><code class="language-python">numbers = [1, 8, 10]
-head(numbers)
-</code></pre>
-<p>In this case, the parameter <em>list</em> and the variable <em>numbers</em> refer to the same object. </p>
-<p>If a function modifies a list parameter, the caller sees the change. For example, the function <strong>delete_head</strong> removes the first element from a given list. </p>
-<pre><code class="language-python">def head(list):
-    del list[0]
-</code></pre>
-<pre><code class="language-python">numbers = [1, 8, 10]
-delete_head(numbers)
-print(numbers)
-# [8, 10]
-</code></pre>
-<p>In the same context, if a function returns a list, it returns a reference to the list. </p>
-<h3 id="nested-lists">Nested lists</h3>
-<p>The element of a list may be another list</p>
-<pre><code class="language-python">values = [names, ages]
-</code></pre>
-<p>A list with another list is said to be <strong>nested</strong>. Nested lists are often used to represent matrices. For example tha matrix: </p>
-<div class="arithmatex">\[
-    \begin{bmatrix}
-      1 &amp; 2 &amp; 3\\
-      4 &amp; 5 &amp; 6\\
-      7 &amp; 8 &amp; 9\\
-    \end{bmatrix}
-\]</div>
-<p>might be represent as:</p>
-<pre><code class="language-python">matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-</code></pre>
-<p><em>matrix</em> is a list with three elements, where each element is a <strong>row</strong> of the matrix. One can select an entire row from the matrix in the usual way</p>
-<pre><code class="language-python">print(matrix[1])
-</code></pre>
-<p>The output is the entire first row [4, 5, 6].</p>
-<p>We can also extract a single element from the matrix using the double-index format</p>
-<pre><code class="language-python">print(matrix[1][1])
-</code></pre>
-<p>The first index selects the row, and the second one selects the column. There are other type of matrix representation such as list of columns instead of a list of rows.</p>
-<h2 id="tuples">Tuples</h2>
-<ul>
-<li>Tuples are another kind of sequence that works much like a list</li>
-<li>Tuples have elements which are indexed starting at 0</li>
-<li>Pretty much anything we can do to a list that doesn't change its state, we can do to a tuple</li>
-<li>We can specify a tuple by using parentheses or nothing instead of square brackets</li>
-</ul>
-<pre><code class="language-python">      cheeses = ('Cheddar', 'Mozzarella', 'Burrata')
-      students = ('Alice', 'Elsa', 'Mary', 'Eve')
-</code></pre>
-<ul>
-<li>Tuples are a convenient way to return multiple values from a function</li>
-<li>Tuple contents are ordered (like an array).</li>
-</ul>
-<pre><code class="language-python">s = ('GOOG', 100, 490.1)
-name = s[0]                 # 'GOOG'
-shares = s[1]               # 100
-price = s[2]                # 490.1
-</code></pre>
-<ul>
-<li>Unlike a list, once we created a tuple, we cannot alter its contents</li>
-</ul>
-<pre><code class="language-python">s[1] = 75
-</code></pre>
-<p>One will get the error "<strong>TypeError: object does not support item assignment</strong>"</p>
-<h3 id="tuples-are-more-memory-efficient">Tuples are more memory efficient</h3>
-<ul>
-<li>Since Python does not have to build tuple structures to be modifiable, they are simpler and more efficient in terms of memory use and performance than lists</li>
-<li>Thus, in our program when we are making ``temporary variables'', we prefer tuples over lists</li>
-</ul>
-<h3 id="tuples-are-comparable">Tuples are comparable</h3>
-<ul>
-<li>The comparison operators work with tuples and other sequences (\eg{} lists)</li>
-<li>If the first item is equal, Python goes on to the next element, and so on, until it finds elements that differ</li>
-</ul>
-<pre><code class="language-python">  numbers = (1, 5, 8)
-  print (numbers &lt; (6, 10, 15))
-</code></pre>
-<p>You can, however, make a new tuple based on a current tuple.</p>
-<pre><code class="language-python">s = (s[0], 75, s[2])
-</code></pre>
-<h3 id="tuple-unpacking">Tuple Unpacking</h3>
-<p>To use the tuple elsewhere, you can unpack its parts into variables.</p>
-<pre><code class="language-python">name, shares, price = s
-print('Cost', shares * price)
-</code></pre>
-<p>The number of variables on the left must match the tuple structure.</p>
-<pre><code class="language-python">name, shares = s     # ERROR
-Traceback (most recent call last):
-...
-ValueError: too many values to unpack
-</code></pre>
-<h1 id="random-numbers">Random Numbers</h1>
-<ul>
-<li>Numerical simulations play a fundamental role when solving real-world problems. For instance, computer simulation is used to predict the weather, aircraft design, create special effects for movies, among others. </li>
-<li>Many simulations require events to occur with a certain likelihood. These sorts of simulations are called Monte Carlo simulations because the results depend on "<em>chance</em>". </li>
-<li>A similar approach is used to generate pseudorandom numbers. </li>
-<li>A <strong>pseudorandom number generator</strong> works by starting with a <em>seed</em> value. This value is given to a function to output a pseudorandom number. The next time a random number is required, the current value is fed back into the function to produce a new one.</li>
-<li>This sequence of numbers appears to be random, but if you start the process over again with the same seed number, you will get the same sequence of pseudorandom numbers. </li>
-<li>Python provides a library module that contains a number of functions for working with pseudorandom numbers.</li>
-<li>These functions derive an initial seed value from the computer's date and time when the module is loaded, so each time a program is run a different sequence of random numbers is produced. </li>
-<li>The main functions are <strong>randrange</strong> and <strong>random</strong>. </li>
-</ul>
-<h3 id="the-randrange-function">The <em>randrange</em> function</h3>
-<ul>
-<li>The randrange function is used to select a pseudorandom int from a given range. The syntax is similar to that of the function <strong>range</strong>. </li>
-</ul>
-<pre><code class="language-python">import random
-numbers = random.randrange(1, 6)
-numbers2 = random.randrange(5, 105, 10)
-</code></pre>
-<ul>
-<li>The first example return a number from 1 to 5 (i.e., [1,2,3,4,5]), whereas the second one returns a multiple of 5 between 5 and 100 inclusive.</li>
-<li>Ranges go up to, but do not include, the stopping value. </li>
-<li>Each call to randrange generates a new pseudorandom int. </li>
-</ul>
-<pre><code class="language-python">import random
-for _ in range(10):
-    print(random.randrange(1, 6))
-</code></pre>
-<ul>
-<li>The value 5 comes up over half the time, demonstrating the probabilistic nature of pseudorandom numbers. </li>
-<li>Over time, this function will produce a uniform distribution, which means that all values will appear an approximately equal number of times.</li>
-</ul>
-<p>There is also the function <em>randint</em>(a, b). It returns a number in a range starting at <em>a</em> up to and including <em>b</em>. </p>
-<h3 id="the-random-function">The <em>random</em> function</h3>
-<ul>
-<li>The random function is used to generate pseudorandom floating point values</li>
-<li>It takes no parameters and returns values uniformly distributed between 0 and 1 (including 0 but not 1).</li>
-</ul>
-<pre><code class="language-python">from random import random
-
-for _ in range(10):
-    print(random())
-</code></pre>
-<h3 id="the-choice-function">The <em>choice</em> function</h3>
-<p>Python can also choose randomly from a list of alternatives</p>
-<pre><code class="language-python">from random import choice
-
-cheeses = [&quot;Cheddar&quot;, &quot;Edam&quot;, &quot;Gouda&quot;]
-cheese = choice(cheeses)
-</code></pre>
-<p>It returns a option of the list. </p>
-<p>It also accepts a string as an argument. </p>
-<pre><code class="language-python">from random import choice
-
-answer = choice(&quot;ABCD&quot;)
-print(answer)
-</code></pre>
-<p>It returns a random letter from the string. One can also get the same result using the <em>randrange</em> function. </p>
-<pre><code class="language-python">from random import randrange
-
-answer = &quot;ABCD&quot;[randrange(4)]
-print(answer)
-</code></pre>
-<h3 id="seeding-and-reproducibility">Seeding and reproducibility</h3>
-<ul>
-<li>As mentioned, the numbers generated by random number generations in computers are pseudorandom. They are determined by an initial value called a <strong>seed</strong>.</li>
-<li>Using the same seed will produce the same sequence of numbers. It is useful when you need reproducibility, especially in debugging or scientific experiments.</li>
-</ul>
-<pre><code class="language-python">import random
-
-random.seed(42)  
-print(random.random())
-</code></pre>
-<p>It will produce the same <em>"random"</em> value every time with this seed. </p>
-<p>The <strong>random</strong> module is useful for general-purpose random number generations, but it is unsuitable for cryptographic purposes. For those, Python has a separate module called <em>secrets</em>.</p>
-<h1 id="exercises">Exercises</h1>
-<div id="ex_5_1">
-<p>1. Write a program that reads a set of integers from the user and store them in a list. The program should continue reading until the user enters the workd done. Then, it should output all the values entered by the user in ascending order.</p>
-
-<p><button class="toggle-solution btn btn-light" onclick="toggle_click(this,'sol_5_1')">Show the answer</button>
-<div class="solution-code" id="sol_5_1"></p>
-<pre><code class="py">
-
-values = []
-
-line = input("Enter an integer value (done to quite): ")
-while line != "done":
-  value = int(line)
-  values.append(value)
-
-  line = input("Enter an integer value (done to quite): ")
-
-values.sort()
-
-print(values)</code></pre>
-</div>
-
-<div id="ex_5_2">
-
-<p>2. Write a program that reads words from the user until the user enters a blank line. The program should output each word entered by the user exactly once. The words should be outputed in the same order they were informed.</p>
-
-<p><button class="toggle-solution btn btn-light" onclick="toggle_click(this,'sol_5_2')">Show the answer</button>
-<div class="solution-code" id="sol_5_2"></p>
-<pre><code class="py">words = []
-word = input("Enter a word (blank line to quit): ")
-
-while word != "":
-    if word not in words:
-        words.append(word)
-
-    word = input("Enter a word (blank line to quit): ")
-
-print(words)</code></pre>
-
-</div>
-
-<div id="ex_5_3">
-
-<p>3. A standard deck of playing cards contains 52 cards. Each card has one of four suits along with a value. The suits are normally spades, hearts, diamonds and clubs while the values are 2 through 10, Jack, Queen, King and Ace. Each playing card can be represented using two characters. The first character is the value of the card, with the values 2 through 9 being represented directly. The characters T, J, Q, K, and A are used to represent the values 10, Jack, Queen, King and Ace respectively. The second character is used to represent the suit of the card. It is normally a lowercase letter: s for spades, h for hearts, d for diamonds, and c for clubs. The following table provides several examples of cards and their two-character representations.</p>
-
-</div>
-
-<table>
-<thead>
-<tr>
-<th>Card</th>
-<th>Abbreviation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Jack of spades</td>
-<td>Js</td>
-</tr>
-<tr>
-<td>Two of clubs</td>
-<td>2c</td>
-</tr>
-<tr>
-<td>Ten of diamonds</td>
-<td>Td</td>
-</tr>
-<tr>
-<td>Ace of hearts</td>
-<td>Ah</td>
-</tr>
-<tr>
-<td>Nine of spades</td>
-<td>9s</td>
-</tr>
-</tbody>
-</table>
-<div>
-<p>Begin by writing a function named _create_deck_. It uses loops to create a complete deck of cards by storing the two-character abbreviations for all 52 cards into a list. Return the list of cards as the function's result. The function should not require any parameters. Write a second function named _shuffle_ that randomizes the order of the cards in a list. One technique that can be used to shuffle the cards is to visit each element in the list and swap it with another random element in the list. <strong>You must write your own loop for shuffling the cards</strong>, and you cannot make use of Python's built-in <em>shuffle</em> function. Use these functions to create a program that displays a deck of cards before and after it has been shuffled.</p>
-
-<p style="background-color:lightgray">A good shuffling algorithm is unbiased, meaning that every different arrangement of the elements is equally probable when the algorithm completes. While the approach described previouly in this problem suggested visiting each element in sequence and swapping it with an element at a random index, such an algorithm is biased. In particular, elements that appear later in the original list are more likely to end up later in the shuffled list. Counterintuitively, an unbiased shuffle can be achieved by visiting each element in sequence and swapping it to a random index between the position of the current element and the end of the list instead of randomly selecting any index.</p>
-
-<p><button class="toggle-solution btn btn-light" onclick="toggle_click(this,'sol_5_3')">Show the answer</button>
-<div class="solution-code" id="sol_5_3"></p>
-<pre><code class="py">from random import randrange
-
-def create_deck():
-    cards = []
-    for suit in ["s", "h", "d", "c"]:
-        for value in list(range(2,10)) + ["T", "J", "Q", "K", "A"]:
-            # Construct the card and add it to the list
-            cards.append(value + suit)
-    return cards
-
-
-def shuffle(cards):
-    for i in range(len(cards)):
-        # Pick a random index between the current index and the end of the list
-        other_pos = randrange(i, len(cards))
-
-        tmp = cards[i]
-        cards[i] = cards[other_pos]
-        cards[other_pos] = tmp
-
-
-def main():
-    cards = create_deck()
-    print(f"The original deck of cards is: \n{cards}\n")
-
-    shuffle(cards)
-    print(f"The shuffled deck of cards is: \n{cards}\n")
-
-
-# Call the main function only if this code has not been imported into another program
-if __name__ == "__main__":
-    main()
-
-</code></pre>
-
-</div></div>
+<h1 id="functions">Functions</h1></div>
             </div>
         </div>
 
@@ -543,15 +119,17 @@ if __name__ == "__main__":
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../extra.js" defer></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../js/base.js"></script>
+        <script src="../extra.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
