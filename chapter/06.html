@@ -127,7 +127,7 @@
 <h2 id="data-structure">Data Structure</h2>
 <h3 id="lists">Lists</h3>
 <p>A list is an ordered set of elements, where each element is identified by an index. Lists are similar to strings, which are ordered sets of characters. The elements of a list can have any type.</p>
-<h4 id="list-values">List values</h4>
+<h4 id="creating-a-list">Creating a list</h4>
 <p>There are multiples way to create a list. The simplest one is to enclose the elements in square brackets ([ and ])</p>
 <pre><code class="language-python">names = [&quot;Alice&quot;, &quot;Sophie&quot;, &quot;Mary&quot;, &quot;Eve&quot;]
 ages = [20, 22, 54, 34]
@@ -137,20 +137,23 @@ ages = [20, 22, 54, 34]
 <pre><code class="language-python">numbers = list(range(0, 10))
 print(numbers)
 </code></pre>
-<p>The <strong>range</strong> function takes two arguments and returns an object that produces a sequence of integers from the start to the stop, including the start but not the stop.</p>
-<p>If there is a third argument called <strong>step size</strong>. It specifies the increment or decrement between successive values</p>
+<p>The <strong>range</strong> function takes two arguments and returns an object that produces a sequence of integers from the start to the stop, <strong>including the start but not the stop</strong>.</p>
+<p>If there is a third argument, it determines the <strong>step size</strong>. A step size defines the increment or decrement between successive values</p>
 <pre><code class="language-python">numbers = list(range(0, 100, 2))
 print(numbers)
 </code></pre>
-<p>With a single argument, it creates a list that start at 0</p>
-<pre><code class="language-python">numbers = list(range(0, 8))
+<p>This example creates a list of integer starting from zero until 99 with a step size of two
+[[0, 2, 4, 6, 8, \ldots, 98]]</p>
+<p>With calling the function <em>range</em> with a single argument, it creates a list starting at 0</p>
+<pre><code class="language-python">numbers = list(range(10))
 print(numbers)
 </code></pre>
+<p>The output will be <span class="arithmatex">\([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\)</span></p>
 <p>One can also create an empty list</p>
 <pre><code class="language-python">empty = []
 </code></pre>
 <h4 id="accessing-individual-elements">Accessing individual elements</h4>
-<p>One can access an element of a list through the bracket operator ([]). The expression inside the brackets specifies the index. <strong>Remember that the indices start at 0</strong>. </p>
+<p>One can access an element of a list through the bracket operator ([]). The expression inside the brackets specifies the index. <strong>Remember that the indices start at 0</strong>.</p>
 <pre><code class="language-python">cheeses = [&quot;Cheddar&quot;, &quot;Edam&quot;, &quot;Gouda&quot;]
 print(cheeses[1])
 cheeses[2] = &quot;Feta&quot;
@@ -159,7 +162,7 @@ print(cheeses)
 <p>Any integer expression can be used as an index. Example</p>
 <pre><code class="language-python">print(cheeses[2-1])
 </code></pre>
-<p>If you try to use a non-integer expression, you will get a <em>TypeError</em></p>
+<p>If you try to use a non-integer expression, you will get a <em>TypeError</em>.</p>
 <pre><code class="language-python">numbers[1.0]
 </code></pre>
 <p><em>TypeError: list indices must be integers or slices, not float</em></p>
@@ -177,10 +180,11 @@ numbers[10] = 42
     print(cheese)
 </code></pre>
 <p>It almost reads like English: "for every cheese in (the list of) <em>cheeses</em>, print (the name of the) cheese.</p>
-<p>One can also use the <strong>enumerate</strong> function to have the index and the value when traversing a list</p>
+<p>One can also use the <strong>enumerate</strong> function to get the index and the element when traversing a list</p>
 <pre><code class="language-python">for i, cheese in enumerate(cheeses):
     print(i, cheese)
 </code></pre>
+<p>In this case, the variable <span class="arithmatex">\(i\)</span> has the value of each element represented by the variable <em>cheese</em></p>
 <h4 id="list-operations">List operations</h4>
 <p>The <strong>+</strong> operator concatenates two lists</p>
 <pre><code class="language-python">a = list(range(1, 9, 2))
@@ -202,6 +206,85 @@ cheeses.extend([&quot;Feta&quot;, &quot;Mozzarella&quot;, &quot;Burrata&quot;])
 <p>We can also use the method <strong>append</strong> to add a new element to a list</p>
 <pre><code class="language-python">cheeses.append(&quot;Orda&quot;)
 print(cheeses)
+</code></pre>
+<h4 id="lists-are-mutable">Lists are mutable</h4>
+<ul>
+<li>Strings are <strong>immutable</strong> as one cannot change the contents of a string without creating a new one</li>
+<li>Any tentative to change the value of a string lead to a *<em>TypeError</em>.</li>
+<li>Example</li>
+</ul>
+<pre><code class="language-python">fruit = &quot;Banana&quot;
+fruit[0] = &quot;b&quot;
+</code></pre>
+<ul>
+<li>In this example, we tried to change the first letter of a string to be lowercase, but we got the error: <em>TypeError: 'str' object does not support item assignment</em>.</li>
+<li>For this, we need to call the method lower and assign its results to the variable fruit. In other words, we need to create a new string.</li>
+</ul>
+<pre><code class="language-python">fruit = fruit.lower()
+print(fruit)
+</code></pre>
+<ul>
+<li>Lists are <strong>mutable</strong> because one can <strong>change the order</strong> of items in a list or <strong>assign</strong> a new value to an element in a list.</li>
+</ul>
+<pre><code class="language-python">numbers = [42, 69, 87, 88, 95]
+print(numbers) # Output: [42, 69, 87, 88, 95]
+numbers[3] = 91 
+print(numbers) # Output: [42, 69, 87, 91, 95]
+</code></pre>
+<h4 id="removing-elements-of-a-list">Removing elements of a list</h4>
+<ul>
+<li>There are several ways to delete elements from a list</li>
+<li>If index of the element to remove is known, one can use the method <strong>pop</strong></li>
+</ul>
+<pre><code class="language-python">numbers = [1, 5, 8]
+number = numbers.pop(1)
+
+print(numbers) #Output: [1, 8]
+print(number)  #Output: 5
+</code></pre>
+<ul>
+<li>The method <strong>pop</strong> modifies the list and returns the element that was removed. In other words, the method <strong>pop</strong> removes an element of a given position and returns its value. If the list is empty or the index is out of range, it raises an <em>IndexError</em>.</li>
+<li>
+<p>If we do not provide an index, it deletes and returns the <strong>last</strong> element</p>
+</li>
+<li>
+<p>The example, we can read as: <em>remove the element at the first position</em>.</p>
+</li>
+<li>If we do not need the removed value, we can use the operator <strong>del</strong>. </li>
+</ul>
+<pre><code class="language-python">numbers = [1, 5, 8]
+del numbers[1]
+print(numbers) #Output: [1, 8]
+</code></pre>
+<ul>
+<li>We can use the operator <strong>del</strong> with a slice index to remove more than one element</li>
+</ul>
+<pre><code class="language-python">numbers = [1, 5, 8]
+del numbers[0:2]
+print(numbers) # [8]
+</code></pre>
+<ul>
+<li>If we know the element to remove, but not the index, we can use the method <strong>remove</strong></li>
+</ul>
+<pre><code class="language-python">numbers = [1, 5, 8]
+numbers.remove(5)
+print(numbers) #Output: [1, 8]
+</code></pre>
+<h4 id="list-comprehensions">List comprehensions</h4>
+<ul>
+<li>Frequently, we need to transform a list into another one, by choosing only certain elements</li>
+<li>A way to do this in Python is through list comprehensions</li>
+</ul>
+<pre><code class="language-python">even_numbers = [x for x in range(10) if x % 2 == 0]
+squares = [x * x for x in range(10)]
+even_squares = [x * x for x in even_numbers]
+</code></pre>
+<ul>
+<li>A list comprehensions can include multiple loops</li>
+</ul>
+<pre><code class="language-python">pairs = [(x, y)\
+         for x in range(10)\
+         for y in range(10)]\
 </code></pre>
 <h4 id="searching-and-sorting_1">Searching and sorting</h4>
 <p>The Boolean operator <strong>in</strong> tests the membership in a <strong>sequence</strong>.</p>
@@ -292,7 +375,7 @@ head(numbers)
 </code></pre>
 <p>In this case, the parameter <em>list</em> and the variable <em>numbers</em> refer to the same object.</p>
 <p>If a function modifies a list parameter, the caller sees the change. For example, the function <strong>delete_head</strong> removes the first element from a given list.</p>
-<pre><code class="language-python">def head(list):
+<pre><code class="language-python">def delete_head(list):
     del list[0]
 </code></pre>
 <pre><code class="language-python">numbers = [1, 8, 10]
@@ -300,7 +383,7 @@ delete_head(numbers)
 print(numbers)
 # [8, 10]
 </code></pre>
-<p>In the same context, if a function returns a list, it returns a reference to the list. </p>
+<p>In the same context, if a function returns a list, it returns a reference to the list.</p>
 <h4 id="nested-lists">Nested lists</h4>
 <p>The element of a list may be another list</p>
 <pre><code class="language-python">values = [names, ages]
@@ -316,14 +399,18 @@ print(numbers)
 <p>might be represented as:</p>
 <pre><code class="language-python">matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 </code></pre>
-<p><em>matrix</em> is a list with three elements, where each element is a <strong>row</strong> of the matrix. One can select an entire row from the matrix in the usual way</p>
+<ul>
+<li><em>matrix</em> is a list with three elements, where each element is a <strong>row</strong> of the matrix. One can select an entire row from the matrix in the usual way</li>
+</ul>
 <pre><code class="language-python">print(matrix[1])
 </code></pre>
 <p>The output is the entire first row [4, 5, 6].</p>
 <p>We can also extract a single element from the matrix using the double-index format</p>
 <pre><code class="language-python">print(matrix[1][1])
 </code></pre>
-<p>The first index selects the row, and the second one selects the column. There are other type of matrix representation such as list of columns instead of a list of rows.</p>
+<ul>
+<li>The first index selects the row, and the second one selects the column. There are other type of matrix representation such as list of columns instead of a list of rows.</li>
+</ul>
 <h3 id="tuples">Tuples</h3>
 <ul>
 <li>Tuples are another kind of sequence that works much like a list</li>
@@ -405,7 +492,7 @@ for _ in range(10):
     print(random.randrange(1, 6))
 </code></pre>
 <ul>
-<li>The value 5 comes up over half the time, demonstrating the probabilistic nature of pseudorandom numbers. </li>
+<li>The value 5 comes up over half the time, demonstrating the probabilistic nature of pseudorandom numbers.</li>
 <li>Over time, this function will produce a uniform distribution, which means that all values will appear an approximately equal number of times.</li>
 </ul>
 <p>There is also the function <em>randint</em>(a, b). It returns a number in a range starting at <em>a</em> up to and including <em>b</em>.</p>
