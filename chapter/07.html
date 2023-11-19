@@ -119,17 +119,14 @@
 <h2 id="fractals">Fractals</h2>
 <ul>
 <li>A fractal is any repeated, graphical pattern.</li>
-<li>A fractal is composed of repeated instances of the same shape or pattern, arranged in a structured way</li>
+<li>It is composed of repeated instances of the same shape or pattern, arranged in a structured way.</li>
 </ul>
+<p><img src="../img/fractals.png" alt="Fractals" class="center"/></p>
 <h2 id="drawing-fractals-with-the-turtle-graphics">Drawing Fractals with the Turtle Graphics</h2>
 <ul>
-<li>
-<p>The <code>turtle</code> module provides some basic commands for drawing lines on the screen in an animated way. </p>
-</li>
-<li>
-<p>You can think it as a turtle holding a pen.</p>
-</li>
-<li>The <code>turtle</code> has three attributes: a <code>location</code>, an  <code>orientation</code>, and a <code>pen</code>.</li>
+<li>The <code>turtle</code> module provides some basic commands for drawing lines on the screen in an animated way.</li>
+<li>You can think it as a turtle holding a pen.</li>
+<li>The <code>turtle</code> has three attributes: a <code>location</code>, an <code>orientation</code>, and a <code>pen</code>.</li>
 <li>The <code>pen</code> has attributes <code>color</code>, <code>width</code>, and <code>state</code>.</li>
 <li>For example, the following code asks the turtle to draw a line 150 pixels long.</li>
 </ul>
@@ -180,7 +177,6 @@ for i in range(360):
 def koch(t, order, size):
     if order == 0:
         t.forward(size)
-
     else:
         koch(t, order-1, size/3)
         t.left(60)
