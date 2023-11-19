@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>4. Algorithm efficiency - measuring complexity - Computational Thinking and Programming - Laboratory</title>
+        <title>2. Random numbers - Computational Thinking and Programming - Laboratory</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -42,27 +42,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="01.html" class="dropdown-item">1. Introduction to Computational Thinking</a>
+    <a href="05.html" class="dropdown-item">1. Lists, Tuples, and Dictionaries</a>
 </li>
                                     
 <li>
-    <a href="02.html" class="dropdown-item">2. Introduction to Algorithms</a>
+    <a href="04.html" class="dropdown-item active">2. Random numbers</a>
 </li>
                                     
 <li>
-    <a href="03.html" class="dropdown-item">3. Introduction to Python</a>
+    <a href="06.html" class="dropdown-item">3. Searching and Sorting</a>
 </li>
                                     
 <li>
-    <a href="04.html" class="dropdown-item active">4. Algorithm efficiency - measuring complexity</a>
-</li>
-                                    
-<li>
-    <a href="05.html" class="dropdown-item">5. Functions</a>
-</li>
-                                    
-<li>
-    <a href="06.html" class="dropdown-item">6. Searching and Sorting</a>
+    <a href="07.html" class="dropdown-item">4. Recursion</a>
 </li>
                                 </ul>
                             </li>
@@ -75,12 +67,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="03.html" class="nav-link">
+                                <a rel="prev" href="05.html" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="05.html" class="nav-link">
+                                <a rel="next" href="06.html" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -102,8 +94,24 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#algorithm-efficiency-measuring-complexity" class="nav-link">Algorithm efficiency: measuring complexity</a>
+            <li class="nav-item" data-level="1"><a href="#random-numbers" class="nav-link">Random numbers</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#the-randrange-function" class="nav-link">The randrange function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#the-random-function" class="nav-link">The random function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#the-choice-function" class="nav-link">The choice function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#seeding-and-reproducibility" class="nav-link">Seeding and reproducibility</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -111,7 +119,81 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="algorithm-efficiency-measuring-complexity">Algorithm efficiency: measuring complexity</h1></div>
+<h1 id="random-numbers">Random numbers</h1>
+<ul>
+<li>Numerical simulations play a fundamental role when solving real-world problems. For instance, computer simulation is used to predict the weather, aircraft design, create special effects for movies, among others.</li>
+<li>Many simulations require events to occur with a certain likelihood. These sorts of simulations are called Monte Carlo simulations because the results depend on "<em>chance</em>". </li>
+<li>A similar approach is used to generate pseudorandom numbers.</li>
+<li>A <strong>pseudorandom number generator</strong> works by starting with a <em>seed</em> value. This value is given to a function to output a pseudorandom number. The next time a random number is required, the current value is fed back into the function to produce a new one.</li>
+<li>This sequence of numbers appears to be random, but if you start the process over again with the same seed number, you will get the same sequence of pseudorandom numbers.</li>
+<li>Python provides a library module that contains a number of functions for working with pseudorandom numbers.</li>
+<li>These functions derive an initial seed value from the computer's date and time when the module is loaded, so each time a program is run a different sequence of random numbers is produced.</li>
+<li>The main functions are <strong>randrange</strong> and <strong>random</strong>.</li>
+</ul>
+<h2 id="the-randrange-function">The <em>randrange</em> function</h2>
+<ul>
+<li>The randrange function is used to select a pseudorandom int from a given range. The syntax is similar to that of the function <strong>range</strong>.</li>
+</ul>
+<pre><code class="language-python">import random
+numbers = random.randrange(1, 6)
+numbers2 = random.randrange(5, 105, 10)
+</code></pre>
+<ul>
+<li>The first example return a number from 1 to 5 (i.e., [1,2,3,4,5]), whereas the second one returns a multiple of 5 between 5 and 100 inclusive.</li>
+<li>Ranges go up to, but do not include, the stopping value.</li>
+<li>Each call to <em>randrange</em> generates a new pseudorandom int.</li>
+</ul>
+<pre><code class="language-python">import random
+for _ in range(10):
+    print(random.randrange(1, 6))
+</code></pre>
+<ul>
+<li>The value 5 comes up over half the time, demonstrating the probabilistic nature of pseudorandom numbers.</li>
+<li>Over time, this function will produce a uniform distribution, which means that all values will appear an approximately equal number of times.</li>
+</ul>
+<p>There is also the function <em>randint</em>(a, b). It returns a number in a range starting at <em>a</em> up to and including <em>b</em>.</p>
+<h2 id="the-random-function">The <em>random</em> function</h2>
+<ul>
+<li>The random function is used to generate pseudorandom floating point values</li>
+<li>It takes no parameters and returns values uniformly distributed between 0 and 1 (including 0 but not 1).</li>
+</ul>
+<pre><code class="language-python">from random import random
+
+for _ in range(10):
+    print(random())
+</code></pre>
+<h2 id="the-choice-function">The <em>choice</em> function</h2>
+<p>Python can also choose randomly from a list of alternatives</p>
+<pre><code class="language-python">from random import choice
+
+cheeses = [&quot;Cheddar&quot;, &quot;Edam&quot;, &quot;Gouda&quot;]
+cheese = choice(cheeses)
+</code></pre>
+<p>It returns an element of the list.</p>
+<p>It also accepts a string as an argument.</p>
+<pre><code class="language-python">from random import choice
+
+answer = choice(&quot;ABCD&quot;)
+print(answer)
+</code></pre>
+<p>Returns a random letter from the string. One can also get the same result using the <em>randrange</em> function.</p>
+<pre><code class="language-python">from random import randrange
+
+answer = &quot;ABCD&quot;[randrange(4)]
+print(answer)
+</code></pre>
+<h2 id="seeding-and-reproducibility">Seeding and reproducibility</h2>
+<ul>
+<li>As mentioned, the numbers generated by random number generations in computers are pseudorandom. They are determined by an initial value called a <strong>seed</strong>.</li>
+<li>Using the same seed will produce the same sequence of numbers. It is useful when you need reproducibility, especially in debugging or scientific experiments.</li>
+</ul>
+<pre><code class="language-python">import random
+
+random.seed(42)  
+print(random.random())
+</code></pre>
+<p>It will produce the same <em>"random"</em> value every time with this seed. </p>
+<p>The <strong>random</strong> module is useful for general-purpose random number generations, but it is unsuitable for cryptographic purposes. For those, Python has a separate module called <em>secrets</em>.</p></div>
             </div>
         </div>
 

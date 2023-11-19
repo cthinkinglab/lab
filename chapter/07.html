@@ -7,13 +7,13 @@
         
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>About - Computational Thinking and Programming - Laboratory</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>4. Recursion - Computational Thinking and Programming - Laboratory</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <link href="extra.css" rel="stylesheet">
+        <link href="../extra.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -21,7 +21,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Computational Thinking and Programming - Laboratory</a>
+                <a class="navbar-brand" href="../index.html">Computational Thinking and Programming - Laboratory</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -32,29 +32,29 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href="index.html" class="nav-link">Home</a>
+                                <a href="../index.html" class="nav-link">Home</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="about.html" class="nav-link">About</a>
+                            <li class="navitem">
+                                <a href="../about.html" class="nav-link">About</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Chapters <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="chapter/05.html" class="dropdown-item">1. Lists, Tuples, and Dictionaries</a>
+    <a href="05.html" class="dropdown-item">1. Lists, Tuples, and Dictionaries</a>
 </li>
                                     
 <li>
-    <a href="chapter/04.html" class="dropdown-item">2. Random numbers</a>
+    <a href="04.html" class="dropdown-item">2. Random numbers</a>
 </li>
                                     
 <li>
-    <a href="chapter/06.html" class="dropdown-item">3. Searching and Sorting</a>
+    <a href="06.html" class="dropdown-item">3. Searching and Sorting</a>
 </li>
                                     
 <li>
-    <a href="chapter/07.html" class="dropdown-item">4. Recursion</a>
+    <a href="07.html" class="dropdown-item active">4. Recursion</a>
 </li>
                                 </ul>
                             </li>
@@ -67,12 +67,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="index.html" class="nav-link">
+                                <a rel="prev" href="06.html" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="chapter/05.html" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -94,8 +94,16 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#course-description" class="nav-link">Course description</a>
+            <li class="nav-item" data-level="1"><a href="#recursion" class="nav-link">Recursion</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#fractals" class="nav-link">Fractals</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#drawing-fractals-with-the-turtle-graphics" class="nav-link">Drawing Fractals with the Turtle Graphics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -103,8 +111,105 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="course-description">Course description</h2>
-<p>Computation plays an essential role in today's world. Understanding computation lies at the heart of many scientific and social developments. This course will discuss computation's power and limitations, including what is computable and how efficient a solution is. Computational thinking skill set go beyond programming a computer, as it can be applied to any field that requires problem-solving abilities — it is all about thinking about abstractions. It has become a fundamental skill for everyone and a tool for understanding the technology that pervades our social world. Likewise, computational thinking increases our awareness of how everyday digital tools work, grounds our cyber ethics, and improves our resilience against various threats, such as algorithm-driven attempts to guide our behavior, personally tailored fake news, viral powers of social media, and massive data-intensive analysis of our movements. It is a powerful but not universal approach to problem-solving, as the ability to solve a problem depends on understanding the context in which the problem exists. For instance, one must understand fluid dynamics to build a simulation of aircraft in flight, or one must understand the genome's biology and the data collection methods to develop a program to search genome databases.</p></div>
+<h1 id="recursion">Recursion</h1>
+<ul>
+<li>Remember, recursion is a problem-solving technique in which tasks are completed by reducing them into repeated, smaller tasks of the same form.</li>
+<li>It comprises two main components: the base and the recursive cases</li>
+</ul>
+<h2 id="fractals">Fractals</h2>
+<ul>
+<li>A fractal is any repeated, graphical pattern.</li>
+<li>A fractal is composed of repeated instances of the same shape or pattern, arranged in a structured way</li>
+</ul>
+<h2 id="drawing-fractals-with-the-turtle-graphics">Drawing Fractals with the Turtle Graphics</h2>
+<ul>
+<li>
+<p>The <code>turtle</code> module provides some basic commands for drawing lines on the screen in an animated way. </p>
+</li>
+<li>
+<p>You can think it as a turtle holding a pen.</p>
+</li>
+<li>The <code>turtle</code> has three attributes: a <code>location</code>, an  <code>orientation</code>, and a <code>pen</code>.</li>
+<li>The <code>pen</code> has attributes <code>color</code>, <code>width</code>, and <code>state</code>.</li>
+<li>For example, the following code asks the turtle to draw a line 150 pixels long.</li>
+</ul>
+<pre><code class="language-python">import turtle
+
+pen = turtle.Turtle()
+pen.forward(150)
+</code></pre>
+<ul>
+<li>You can also ask it to move forward, backward, and turn left and right, as well as to draw a circle:</li>
+</ul>
+<pre><code class="language-python">import turtle
+
+pen = turtle.Turtle()
+
+for i in range(360):
+    pen.forward(1)
+    pen.right(1)  
+</code></pre>
+<ul>
+<li>
+<p>All functions available as part of the turtle library are available at <a href="https://docs.python.org/3/library/turtle.html">https://docs.python.org/3/library/turtle.html</a>.</p>
+</li>
+<li>
+<p>You can draw different geometric figures.</p>
+</li>
+<li>For instance, you can instruct the turtle to draw the <a href="https://en.wikipedia.org/wiki/Koch_snowflake">Koch snowflake</a> following a recursive strategy.</li>
+</ul>
+<p><img src="../img/koch-curve-levels.png" alt="och snowflake" width="50%" height="50%" class="center"/></p>
+<!-- ![Koch snowflake](/img/koch-curve-levels.png) -->
+
+<ul>
+<li>The <strong>base</strong> is a straight line</li>
+<li>The procedures to draw the first level include:<ul>
+<li>Draw a line 1/3 the total length</li>
+<li>Rotate 60 degrees to the left</li>
+<li>Draw another line 1/3 the total length</li>
+<li>Rotate 120 degrees to the right</li>
+<li>Draw a third line 1/3 the total length</li>
+<li>Rotate 60 degrees to the left</li>
+<li>Draw a fourth and final line 1/3 the total length</li>
+</ul>
+</li>
+<li>For the next level, you simply take one of the <em>lines</em> and draw a shrunken copy of the described procedure</li>
+</ul>
+<pre><code class="language-python">import turtle
+
+def koch(t, order, size):
+    if order == 0:
+        t.forward(size)
+
+    else:
+        koch(t, order-1, size/3)
+        t.left(60)
+        koch(t, order-1, size/3)
+        t.right(120)
+        koch(t, order-1, size/3)
+        t.left(60)
+        koch(t, order-1, size/3)
+
+def main():
+    pen = turtle.Turtle(shape=&quot;turtle&quot;)
+    screen = turtle.Screen()
+    screen.title('Turtle Koch Curve')
+
+    pen.color(&quot;green&quot;)
+    pen.shapesize(1)    
+    pen.penup()
+    pen.speed('fastest')
+    pen.backward(150)
+    pen.pendown()
+
+    koch(pen, 3, 300)
+
+    screen.exitonclick()
+
+if __name__ == '__main__':
+    main()
+
+</code></pre></div>
             </div>
         </div>
 
@@ -112,17 +217,17 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js"></script>
-        <script src="extra.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../extra.js"></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script src="search/main.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
